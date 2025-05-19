@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
+import { motion } from 'framer-motion';
 
 type Category = {
   id: number;
@@ -31,17 +32,17 @@ export default function HomePage() {
     fetchCategories();
   }, []);
 
-  if (loading) {
-    return <p className="p-4">Yükleniyor...</p>;
-  }
-
-  return (    
-    <main className="p-4">    
-      
+  return (
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: loading ? 0.5 : 1 }}
+      transition={{ duration: 0.4 }}
+      className="relative z-10 p-4 md:mt-0"
+    >
       <h1 className="text-2xl font-bold mb-4">Kategoriler</h1>
 
-      {categories.length === 0 ? (
-        <p>Hiç kategori bulunamadı.</p>
+      {loading ? (
+        <p className="text-gray-500">Yükleniyor...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {categories.map((cat) => (
@@ -62,6 +63,6 @@ export default function HomePage() {
           ))}
         </div>
       )}
-    </main>
+    </motion.main>
   );
 }

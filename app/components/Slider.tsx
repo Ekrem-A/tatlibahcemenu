@@ -1,10 +1,26 @@
+'use client';
+
+import Image from 'next/image';
+
 export default function Slider() {
   return (
-    <div className="relative w-full h-64">
-      <img src="/path/to/your/image.jpg" alt="Slider Image" className="w-full h-full object-cover rounded-lg shadow-lg" />
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <h2 className="text-white text-2xl font-bold">Slider Title</h2>
+    <section className="relative w-full h-[40vh] sm:h-[60vh] lg:h-[75vh] min-h-[300px] overflow-hidden">
+      <Image
+        src="/img/slider.jpeg"
+        alt="Slider Background"
+        fill
+        className="object-cover object-center brightness-75"
+        priority
+      />
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight">
+          Restaurant Menu
+        </h1>
+        <p className="text-sm sm:text-base">
+          Home / <span className="text-yellow-500">menü</span>
+        </p>
       </div>
-    </div>
+    </section>
   );
 }

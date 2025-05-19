@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 :root {
   --background: #ffffff;
@@ -14,8 +19,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+}
+
+@layer utilities {
+  @keyframes loading-bar {
+    0% {
+      left: -33%;
+    }
+    50% {
+      left: 50%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  .animate-loading-bar {
+    animation: loading-bar 1.5s ease-in-out infinite;
   }
 }
 
@@ -24,6 +47,3 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
